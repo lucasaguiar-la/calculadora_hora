@@ -1,5 +1,14 @@
+global option
+global expense_list
 
-def menu(option):
+class Operations:
+    def add_expeses():
+        expense_name = str(input("Digite um nome para sua despesa: "))
+        expense_value = float(input("Qual o valor dessa despesa? "))
+        test_list = dict(expense_name, expense_value)
+        return test_list 
+
+def menu(option = 0, expense_list=[]):
     while option != 5:
         print(
 '''
@@ -12,13 +21,22 @@ Escolha uma opção:
 '''
         )
         option = int(input())
+        match(option):
+            case 1:
+                print("Opção 1")
+                expense_list.append(Operations.add_expeses())
+                print(expense_list)
+            case 2:
+                print("Opção 2")
+            case 3:
+                print("Opção 3")
+            case 4:
+                print("Opção 4")
     return
 
 if __name__ == '__main__':
-    option = 0
-
     print("\n" + "="*25)
     print("[CALCULADORA VALOR/HORA]")
     print("="*25)
 
-    menu(option)
+    menu()
