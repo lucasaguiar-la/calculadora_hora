@@ -18,6 +18,10 @@ class Operations:
         else:
             print("Opção inválida!")
             Operations.add_expenses()
+    
+    @staticmethod
+    def add_salary():
+        ...
 
 def menu(option = 0):
     while option != 6:
