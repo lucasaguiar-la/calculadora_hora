@@ -6,9 +6,18 @@ global hours
 
 class Operations:
     expenses = {}
-    salary = ""
+    salary = 0
     events = {}
-    hours = 0
+    hours = 1
+
+    def formula():
+        total_expenses = sum(Operations.expenses.values())
+        final_salary = Operations.salary
+        total_events = sum(Operations.events.values())
+        final_hours = Operations.hours
+
+        result = (total_expenses + final_salary + total_events) / final_hours
+        print(f"O valor da sua hora/trabalho é de R$ {result}")
 
     @staticmethod
     def add_expenses():
@@ -78,12 +87,13 @@ Escolha uma opção:
             case 4:
                 Operations.add_hours()
             case 5:
-                print("\n[DESPESAS]")
+                Operations.formula()
+                '''print("\n[DESPESAS]")
                 for name, value in Operations.expenses.items():
                     print(f"\nDespesa: {name}\nValor: R${value:.2f}")
                 print("\n[IMPREVISTOS]")
                 for name, value in Operations.events.items():
-                    print(f"\nTag: {name}\nValor: R${value:.2f}")
+                    print(f"\nTag: {name}\nValor: R${value:.2f}")'''
     return
 
 if __name__ == '__main__':
