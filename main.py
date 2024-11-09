@@ -2,11 +2,13 @@ global option
 global expenses
 global salary
 global events
+global hours
 
 class Operations:
     expenses = {}
     salary = ""
     events = {}
+    hours = 0
 
     @staticmethod
     def add_expenses():
@@ -45,6 +47,13 @@ class Operations:
             print("Opção inválida!")
             Operations.add_events()
 
+    @staticmethod
+    def add_hours():
+        hours_value = int(input("\nQuantas horas mensais você deseja trabalhar? "))
+
+        Operations.hours = hours_value
+        print(f"Horas mensais trabalhadas atualizado para {hours_value}h")
+
 def menu(option = 0):
     while option != 6:
         print(
@@ -67,7 +76,7 @@ Escolha uma opção:
             case 3:
                 Operations.add_events()
             case 4:
-                print("Opção 4")
+                Operations.add_hours()
             case 5:
                 print("\n[DESPESAS]")
                 for name, value in Operations.expenses.items():
