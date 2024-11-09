@@ -24,7 +24,7 @@ class Operations:
         else:
             print("Opção inválida!")
             Operations.add_expenses()
-    
+
     @staticmethod
     def add_salary():
         salary_value = float(input("\nQual sua meta salarial? "))
@@ -52,20 +52,38 @@ class Operations:
         total_events = Operations.events
         final_hours = Operations.hours
 
-        result = (total_expenses + final_salary + total_events) / final_hours
-        print(f"\nO valor da sua hora/trabalho é de R$ {result}")
+        missing_values = []
+
+        if total_expenses == 0:
+            missing_values.append("despesas")
+        if final_salary == 0:
+            missing_values.append("salário")
+        if total_events == 0:
+            missing_values.append("imprevistos")
+        if final_hours == 0 or final_hours == 1:
+            missing_values.append("horas")
+
+        if missing_values:
+            print("\nOs seguintes valores estão faltando:")
+            for item in missing_values:
+                print(f"- {item.capitalize()}")
+            print("Por favor, preencha todos os valores antes de calcular.")
+        else:
+            result = (total_expenses + final_salary + total_events) / final_hours
+            print(f"\nO valor da sua hora/trabalho é de R$ {result}")
 
 def menu(option = 0):
-    while option != 6:
+    while option != 7:
         print(
 '''
 Escolha uma opção:
-1) Registrar despesas mensais
-2) Definir meta salarial
-3) Definir valor geral para imprevistos
-4) Definir meta de horas a trabalhar
-5) Visualizar
-6) Sair
+1) [DESPESAS] - Registrar despesas mensais
+2) [SALÁRIO] - Definir meta salarial
+3) [IMPREVISTOS] - Definir valor geral para imprevistos
+4) [HORAS] - Definir meta de horas a trabalhar
+5) Visualizar registros
+6) Quanto vale minha hora?
+7) Sair
 '''
         )
         option = int(input())
@@ -79,13 +97,15 @@ Escolha uma opção:
             case 4:
                 Operations.add_hours()
             case 5:
-                Operations.formula()
-                '''print("\n[DESPESAS]")
+                print("\n[DESPESAS]")
                 for name, value in Operations.expenses.items():
                     print(f"\nDespesa: {name}\nValor: R${value:.2f}")
                 print("\n[IMPREVISTOS]")
                 for name, value in Operations.events.items():
-                    print(f"\nTag: {name}\nValor: R${value:.2f}")'''
+                    print(f"\nTag: {name}\nValor: R${value:.2f}")
+            case 6:
+                Operations.formula()
+
     return
 
 if __name__ == '__main__':
