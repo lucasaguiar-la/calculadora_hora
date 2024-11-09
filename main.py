@@ -46,7 +46,23 @@ class Operations:
         Operations.hours = hours_value
         print(f"Horas mensais trabalhadas atualizado para {hours_value}h")
 
-    def formula():
+    def view_records():
+        print("\n[DESPESAS]")
+        for name, value in Operations.expenses.items():
+            print(f"Despesa: {name}\nValor: R${value:.2f}")
+
+        print("\n[SALÁRIO]")
+        print(f"Meta salarial: R$ {Operations.salary:.2f}")
+
+        print("\n[IMPREVISTOS]")
+        print(f"Valor total para imprevistos: R$ {Operations.events:.2f}")
+
+        print("\n[HORAS]")
+        print(f"Horas mensais trabalhadas: {Operations.hours}h")
+
+        return
+
+    def make_formula():
         total_expenses = sum(Operations.expenses.values())
         final_salary = Operations.salary
         total_events = Operations.events
@@ -97,14 +113,9 @@ Escolha uma opção:
             case 4:
                 Operations.add_hours()
             case 5:
-                print("\n[DESPESAS]")
-                for name, value in Operations.expenses.items():
-                    print(f"\nDespesa: {name}\nValor: R${value:.2f}")
-                print("\n[IMPREVISTOS]")
-                for name, value in Operations.events.items():
-                    print(f"\nTag: {name}\nValor: R${value:.2f}")
+                Operations.view_records()
             case 6:
-                Operations.formula()
+                Operations.make_formula()
 
     return
 
