@@ -1,8 +1,10 @@
 global option
 global expenses
+global salary
 
 class Operations:
     expenses = {}
+    salary = ""
 
     @staticmethod
     def add_expenses():
@@ -21,7 +23,10 @@ class Operations:
     
     @staticmethod
     def add_salary():
-        ...
+        salary_value = float(input("\nQual sua meta salarial? "))
+
+        Operations.salary = salary_value
+        print(f"Meta salarial atualizada para R$ {salary_value}")
 
 def menu(option = 0):
     while option != 6:
@@ -41,7 +46,7 @@ Escolha uma opção:
             case 1:
                 Operations.add_expenses()
             case 2:
-                print("Opção 2")
+                Operations.add_salary()
             case 3:
                 print("Opção 3")
             case 4:
