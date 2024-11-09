@@ -7,17 +7,8 @@ global hours
 class Operations:
     expenses = {}
     salary = 0
-    events = {}
+    events = 0
     hours = 1
-
-    def formula():
-        total_expenses = sum(Operations.expenses.values())
-        final_salary = Operations.salary
-        total_events = sum(Operations.events.values())
-        final_hours = Operations.hours
-
-        result = (total_expenses + final_salary + total_events) / final_hours
-        print(f"O valor da sua hora/trabalho é de R$ {result}")
 
     @staticmethod
     def add_expenses():
@@ -43,18 +34,10 @@ class Operations:
 
     @staticmethod
     def add_events():
-        event_name = str(input("\nAdicione uma tag para esse emprevisto (ex.: Despesas médicas, Oficina etc...): "))
-        event_value = float(input("Qual o valor dessa tag? "))
+        event_value = int(input("\nDefina um valor total para reserva de emergência: R$"))
 
-        print(f"\nTag: {event_name}\nValor: R$ {event_value:.2f}")
-        answer = str(input("Deseja adicionar essa despesa? [S/N] \n"))
-        if answer.upper() == 'S':
-            Operations.events[event_name] = event_value
-        elif answer.upper() == 'N':
-            return
-        else:
-            print("Opção inválida!")
-            Operations.add_events()
+        Operations.events = event_value
+        print(f"O valor total da sua reserva para imprevistos é de R$ {event_value:.2f}")
 
     @staticmethod
     def add_hours():
@@ -62,6 +45,15 @@ class Operations:
 
         Operations.hours = hours_value
         print(f"Horas mensais trabalhadas atualizado para {hours_value}h")
+
+    def formula():
+        total_expenses = sum(Operations.expenses.values())
+        final_salary = Operations.salary
+        total_events = Operations.events
+        final_hours = Operations.hours
+
+        result = (total_expenses + final_salary + total_events) / final_hours
+        print(f"\nO valor da sua hora/trabalho é de R$ {result}")
 
 def menu(option = 0):
     while option != 6:
