@@ -1,10 +1,10 @@
 import sys
 from PyQt5.QtWidgets import QApplication
-from gui.windowed_viewer import TerminalWindow
+from gui.windowed_viewer import Window
 
 def main():
     app = QApplication(sys.argv)
-    window = TerminalWindow()
+    window = Window()
     window.show()
     sys.exit(app.exec_())
 

@@ -29,7 +29,7 @@ class Operations:
     def add_hours(self):
         self.hours = 160
         self.terminal_window.append_output(f"Horas mensais definidas como {self.hours}h")
-
+    #🔸 [Visualização dos registros pelo temrinal]
     '''def view_records():
         print("\n[DESPESAS]")
         for name, value in Operations.expenses.items():
@@ -55,7 +55,7 @@ class Operations:
         result = (total_expenses + self.salary + self.events) / self.hours
         self.terminal_window.append_output(f"O valor da sua hora de trabalho é de R$ {result:.2f}")
 
-
+#🔸 [Menu de opções pelo terminal]
     '''def menu(option = 0):
         while option != 7:
             print(
