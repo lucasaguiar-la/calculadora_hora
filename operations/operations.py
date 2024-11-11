@@ -5,48 +5,32 @@ global events
 global hours
 
 class Operations:
-    expenses = {}
-    salary = 0
-    events = 0
-    hours = 1
+    def __init__(self, terminal_window):
+        self.terminal_window = terminal_window
+        self.expenses = {}
+        self.salary = 0
+        self.events = 0
+        self.hours = 1
 
-    @staticmethod
-    def add_expenses():
-        expense_name = str(input("\nDigite um nome para sua despesa: "))
-        expense_value = float(input("Qual o valor dessa despesa? "))
+    def add_expenses(self):
+        expense_name = "Aluguel"
+        expense_value = 500
+        self.expenses[expense_name] = expense_value
+        self.terminal_window.append_output(f"Despesa '{expense_name}' adicionada com valor de R$ {expense_value:.2f}")
 
-        print(f"\nDespesa: {expense_name}\nValor: R$ {expense_value:.2f}")
-        answer = str(input("Deseja adicionar essa despesa? [S/N] \n"))
-        if answer.upper() == "S":
-            Operations.expenses[expense_name] = expense_value
-        elif answer.upper() == "N":
-            return
-        else:
-            print("Opção inválida!")
-            Operations.add_expenses()
+    def add_salary(self):
+        self.salary = 3000
+        self.terminal_window.append_output(f"Meta salarial atualizada para R$ {self.salary:.2f}")
 
-    @staticmethod
-    def add_salary():
-        salary_value = float(input("\nQual sua meta salarial? "))
+    def add_events(self):
+        self.events = 200
+        self.terminal_window.append_output(f"Valor para imprevistos definido como R$ {self.events:.2f}")
 
-        Operations.salary = salary_value
-        print(f"Meta salarial atualizada para R$ {salary_value}")
+    def add_hours(self):
+        self.hours = 160
+        self.terminal_window.append_output(f"Horas mensais definidas como {self.hours}h")
 
-    @staticmethod
-    def add_events():
-        event_value = int(input("\nDefina um valor total para reserva de emergência: R$"))
-
-        Operations.events = event_value
-        print(f"O valor total da sua reserva para imprevistos é de R$ {event_value:.2f}")
-
-    @staticmethod
-    def add_hours():
-        hours_value = int(input("\nQuantas horas mensais você deseja trabalhar? "))
-
-        Operations.hours = hours_value
-        print(f"Horas mensais trabalhadas atualizado para {hours_value}h")
-
-    def view_records():
+    '''def view_records():
         print("\n[DESPESAS]")
         for name, value in Operations.expenses.items():
             print(f"Despesa: {name}\nValor: R${value:.2f}")
@@ -60,39 +44,22 @@ class Operations:
         print("\n[HORAS]")
         print(f"Horas mensais trabalhadas: {Operations.hours}h")
 
-        return
+        return'''
 
-    def make_formula():
-        total_expenses = sum(Operations.expenses.values())
-        final_salary = Operations.salary
-        total_events = Operations.events
-        final_hours = Operations.hours
+    def make_formula(self):
+        if not all([self.expenses, self.salary, self.events, self.hours]):
+            self.terminal_window.append_output("Preencha todos os valores antes de calcular.")
+            return
 
-        missing_values = []
+        total_expenses = sum(self.expenses.values())
+        result = (total_expenses + self.salary + self.events) / self.hours
+        self.terminal_window.append_output(f"O valor da sua hora de trabalho é de R$ {result:.2f}")
 
-        if total_expenses == 0:
-            missing_values.append("despesas")
-        if final_salary == 0:
-            missing_values.append("salário")
-        if total_events == 0:
-            missing_values.append("imprevistos")
-        if final_hours == 0 or final_hours == 1:
-            missing_values.append("horas")
 
-        if missing_values:
-            print("\nOs seguintes valores estão faltando:")
-            for item in missing_values:
-                print(f"- {item.capitalize()}")
-            print("Por favor, preencha todos os valores antes de calcular.")
-        else:
-            result = (total_expenses + final_salary + total_events) / final_hours
-            print(f"\nO valor da sua hora/trabalho é de R$ {result}")
-
-    def menu(option = 0):
+    '''def menu(option = 0):
         while option != 7:
             print(
-'''
-Escolha uma opção:
+"scolha uma opção:
 1) [DESPESAS] - Registrar despesas mensais
 2) [SALÁRIO] - Definir meta salarial
 3) [IMPREVISTOS] - Definir valor geral para imprevistos
@@ -100,7 +67,7 @@ Escolha uma opção:
 5) Visualizar registros
 6) Quanto vale minha hora?
 7) Sair
-'''
+"
             )
             option = int(input())
             match(option):
@@ -118,4 +85,4 @@ Escolha uma opção:
                     Operations.make_formula()
                 case 7:
                     return
-        return
+        return'''

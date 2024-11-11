@@ -1,22 +1,19 @@
 import sys
-from PyQt5.QtWidgets import (QPushButton, QVBoxLayout, QWidget, QMainWindow, 
-                            QTextEdit, QLineEdit, QLabel, QMessageBox, QInputDialog)
-from PyQt5.QtCore import QProcess
+from PyQt5.QtWidgets import (QPushButton, QVBoxLayout, QWidget, QMainWindow, QTextEdit)
 from operations.operations import Operations
 
 class TerminalWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Calculadora hora/valor")
+        self.setWindowTitle("Calculadora de Valor/Hora")
         self.resize(800, 600)
 
         self.terminal_view = QTextEdit(self)
         self.terminal_view.setReadOnly(True)
-        self.setCentralWidget(self.terminal_view)
+
+        self.operations = Operations(self)
 
         self.init_ui()
-
-        self.operations = Operations()
 
     def init_ui(self):
         layout = QVBoxLayout()
@@ -44,3 +41,6 @@ class TerminalWindow(QMainWindow):
         layout.addWidget(btn_calculate)
 
         self.setCentralWidget(container)
+
+    def append_output(self, text):
+        self.terminal_view.append(text)

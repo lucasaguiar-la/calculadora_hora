@@ -1,6 +1,6 @@
 import sys
 from PyQt5.QtWidgets import QApplication
-from gui.terminal_view import TerminalWindow
+from gui.windowed_viewer import TerminalWindow
 
 def main():
     app = QApplication(sys.argv)
@@ -9,8 +9,5 @@ def main():
     sys.exit(app.exec_())
 
 if __name__ == '__main__':
-    print("\n" + "="*25)
-    print("[CALCULADORA VALOR/HORA]")
-    print("="*25)
-
+    print("APLICAÇÃO INICIADA")
     main()
