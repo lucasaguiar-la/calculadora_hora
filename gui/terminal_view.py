@@ -18,7 +18,7 @@ class TerminalWindow(QMainWindow):
         layout.addWidget(self.expense_button)
 
         self.salary_button = QPushButton("Definir Meta Salarial", self)
-        self.salary_button.clicked.connect(self.add_salary)
+        self.salary_button.clicked.connect(lambda: Operations.add_salary(self))
         layout.addWidget(self.salary_button)
 
         self.events_button = QPushButton("Definir Imprevistos", self)
@@ -41,13 +41,6 @@ class TerminalWindow(QMainWindow):
         self.process.setProgram("bash" if sys.platform != "win32" else "cmd")
         self.process.readyReadStandardOutput.connect(self.update_output)
         self.process.start()
-
-    def add_salary(self):
-        # Implementar a lógica para definir meta salarial
-        salary_value, ok = QInputDialog.getDouble(self, 'Definir Meta Salarial', 'Qual sua meta salarial?')
-        if ok:
-            Operations.salary = salary_value
-            #self.terminal_view.append(f"Meta salarial atualizada para R$ {salary_value:.2f}")
 
     def add_events(self):
         # Implementar a lógica para definir imprevistos

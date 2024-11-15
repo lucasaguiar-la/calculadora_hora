@@ -25,11 +25,11 @@ class Operations:
                 print(f"Despesa: {expense_name}\nValor: R$ {expense_value:.2f}")
 
     @staticmethod
-    def add_salary():
-        salary_value = float(input("\nQual sua meta salarial? "))
-
-        Operations.salary = salary_value
-        print(f"Meta salarial atualizada para R$ {salary_value}")
+    def add_salary(parent):
+        salary_value, ok = QInputDialog.getDouble(parent, 'Definir Meta Salarial', 'Qual sua meta salarial?')
+        if ok:
+            Operations.salary = salary_value
+            QMessageBox.information(parent, 'Meta Salarial Definida', f"Meta salarial atualizada para R$ {salary_value}")
 
     @staticmethod
     def add_events():
