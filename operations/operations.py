@@ -1,3 +1,5 @@
+from PyQt5.QtWidgets import (QPushButton, QVBoxLayout, QWidget, QMainWindow, QTextEdit, QLineEdit, QLabel, QMessageBox, QInputDialog)
+
 global option
 global expenses
 global salary
@@ -11,19 +13,16 @@ class Operations:
     hours = 1
 
     @staticmethod
-    def add_expenses():
-        expense_name = str(input("\nDigite um nome para sua despesa: "))
-        expense_value = float(input("Qual o valor dessa despesa? "))
-
-        print(f"\nDespesa: {expense_name}\nValor: R$ {expense_value:.2f}")
-        answer = str(input("Deseja adicionar essa despesa? [S/N] \n"))
-        if answer.upper() == "S":
-            Operations.expenses[expense_name] = expense_value
-        elif answer.upper() == "N":
-            return
-        else:
-            print("Opção inválida!")
-            Operations.add_expenses()
+    def add_expenses(parent):
+        expense_name, ok1 = QInputDialog.getText(parent, 'Adicionar Despesa', 'Digite um nome para sua despesa:')
+        print(expense_name)
+        if ok1:
+            expense_value, ok2 = QInputDialog.getDouble(parent, 'Adicionar Despesa', 'Qual o valor dessa despesa?')
+            print(expense_value + "\n")
+            if ok2:
+                Operations.expenses[expense_name] = expense_value
+                QMessageBox.information(parent, 'Despesa Adicionada', f"Despesa: {expense_name}\nValor: R$ {expense_value:.2f}")
+                print(f"Despesa: {expense_name}\nValor: R$ {expense_value:.2f}")
 
     @staticmethod
     def add_salary():
