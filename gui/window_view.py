@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import (QPushButton, QVBoxLayout, QWidget, QMainWindow)
 from PyQt5.QtCore import QProcess
 from operations.operations import Operations
 
-class TerminalWindow(QMainWindow):
+class Window(QMainWindow):
     def __init__(self):
         # Inicializar a janela
         super().__init__()
@@ -37,7 +37,6 @@ class TerminalWindow(QMainWindow):
         self.formula_button.clicked.connect(lambda: Operations.make_formula(self))
         layout.addWidget(self.formula_button)
 
-        # Botão para sair
         container = QWidget()
         container.setLayout(layout)
         self.setCentralWidget(container)

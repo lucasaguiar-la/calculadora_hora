@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import (QPushButton, QVBoxLayout, QWidget, QMainWindow, QTextEdit, QLineEdit, QLabel, QMessageBox, QInputDialog)
+from PyQt5.QtWidgets import (QMessageBox, QInputDialog)
 
 global option
 global expenses
@@ -57,6 +57,7 @@ class Operations:
 
         return
 
+    @staticmethod
     def make_formula(parent):
         total_expenses = sum(Operations.expenses.values())
         final_salary = Operations.salary
@@ -75,42 +76,9 @@ class Operations:
             missing_values.append("horas")
 
         if missing_values:
-            print("\nOs seguintes valores estão faltando:")
-            for item in missing_values:
-                print(f"- {item.capitalize()}")
-            print("Por favor, preencha todos os valores antes de calcular.")
+            missing_items = "\n".join(f"- {item.capitalize()}" for item in missing_values)
+            QMessageBox.warning(parent, 'Valores Faltando', f"\nOs seguintes valores estão faltando:\n{missing_items}\nPor favor, preencha todos os valores antes de calcular.")
         else:
             result = (total_expenses + final_salary + total_events) / final_hours
-            print(f"\nO valor da sua hora/trabalho é de R$ {result}")
+            QMessageBox.information(parent, 'Resultado', f"\nO valor da sua hora/trabalho é de R$ {result:.2f}")
 
-#🔸 [Menu de opções pelo terminal]
-    '''def menu(option = 0):
-        while option != 7:
-            print(
-"scolha uma opção:
-1) [DESPESAS] - Registrar despesas mensais
-2) [SALÁRIO] - Definir meta salarial
-3) [IMPREVISTOS] - Definir valor geral para imprevistos
-4) [HORAS] - Definir meta de horas a trabalhar
-5) Visualizar registros
-6) Quanto vale minha hora?
-7) Sair
-"
-            )
-            option = int(input())
-            match(option):
-                case 1:
-                    Operations.add_expenses()
-                case 2:
-                    Operations.add_salary()
-                case 3:
-                    Operations.add_events()
-                case 4:
-                    Operations.add_hours()
-                case 5:
-                    Operations.view_records()
-                case 6:
-                    Operations.make_formula()
-                case 7:
-                    return
-        return'''
