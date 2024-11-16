@@ -45,19 +45,15 @@ class Operations:
             Operations.hours = hours_value
             QMessageBox.information(parent, 'Horas Definidas', f"Horas mensais trabalhadas atualizado para {hours_value}h")
 
-    def view_records():
-        print("\n[DESPESAS]")
+    @staticmethod
+    def view_records(parent):
+        records = "\n[DESPESAS]\n"
         for name, value in Operations.expenses.items():
-            print(f"Despesa: {name}\nValor: R${value:.2f}")
-
-        print("\n[SALÁRIO]")
-        print(f"Meta salarial: R$ {Operations.salary:.2f}")
-
-        print("\n[IMPREVISTOS]")
-        print(f"Valor total para imprevistos: R$ {Operations.events:.2f}")
-
-        print("\n[HORAS]")
-        print(f"Horas mensais trabalhadas: {Operations.hours}h")
+            records += f"Despesa: {name}\nValor: R$ {value:.2f}\n"
+        records += f"\n[SALÁRIO]\nMeta salarial: R$ {Operations.salary:.2f}\n"
+        records += f"\n[IMPREVISTOS]\nValor total para imprevistos: R$ {Operations.events:.2f}\n"
+        records += f"\n[HORAS]\nHoras mensais trabalhadas: {Operations.hours}h\n"
+        QMessageBox.information(parent, 'Visualizar Registros', records)
 
         return
 

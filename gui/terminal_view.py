@@ -30,7 +30,7 @@ class TerminalWindow(QMainWindow):
         layout.addWidget(self.hours_button)
 
         self.view_button = QPushButton("Visualizar Registros", self)
-        self.view_button.clicked.connect(self.view_records)
+        self.view_button.clicked.connect(lambda: Operations.view_records(self))
         layout.addWidget(self.view_button)
 
         container = QWidget()
@@ -41,18 +41,6 @@ class TerminalWindow(QMainWindow):
         self.process.setProgram("bash" if sys.platform != "win32" else "cmd")
         self.process.readyReadStandardOutput.connect(self.update_output)
         self.process.start()
-
-    
-
-    def view_records(self):
-        # Visualizar registros
-        records = "\n[DESPESAS]\n"
-        for name, value in Operations.expenses.items():
-            records += f"Despesa: {name}\nValor: R$ {value:.2f}\n"
-        records += f"\n[SALÁRIO]\nMeta salarial: R$ {Operations.salary:.2f}\n"
-        records += f"\n[IMPREVISTOS]\nValor total para imprevistos: R$ {Operations.events:.2f}\n"
-        records += f"\n[HORAS]\nHoras mensais trabalhadas: {Operations.hours}h\n"
-        #self.terminal_view.append(records)
 
     def update_output(self):
         output = self.process.readAllStandardOutput().data().decode()
