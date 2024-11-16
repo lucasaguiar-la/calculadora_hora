@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import (QPushButton, QVBoxLayout, QWidget, QMainWindow, QTextEdit, QLineEdit, QLabel, QMessageBox, QInputDialog)
+from PyQt5.QtWidgets import (QPushButton, QVBoxLayout, QWidget, QMainWindow)
 from PyQt5.QtCore import QProcess
 from operations.operations import Operations
 
@@ -33,6 +33,11 @@ class TerminalWindow(QMainWindow):
         self.view_button.clicked.connect(lambda: Operations.view_records(self))
         layout.addWidget(self.view_button)
 
+        self.formula_button = QPushButton("Quanto vale minha hora?", self)
+        self.formula_button.clicked.connect(lambda: Operations.make_formula(self))
+        layout.addWidget(self.formula_button)
+
+        # Botão para sair
         container = QWidget()
         container.setLayout(layout)
         self.setCentralWidget(container)
@@ -44,4 +49,4 @@ class TerminalWindow(QMainWindow):
 
     def update_output(self):
         output = self.process.readAllStandardOutput().data().decode()
-        #self.terminal_view.append(output)
+

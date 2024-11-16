@@ -15,10 +15,8 @@ class Operations:
     @staticmethod
     def add_expenses(parent):
         expense_name, ok1 = QInputDialog.getText(parent, 'Adicionar Despesa', 'Digite um nome para sua despesa:')
-        print(expense_name)
         if ok1:
             expense_value, ok2 = QInputDialog.getDouble(parent, 'Adicionar Despesa', 'Qual o valor dessa despesa?')
-            print(expense_value + "\n")
             if ok2:
                 Operations.expenses[expense_name] = expense_value
                 QMessageBox.information(parent, 'Despesa Adicionada', f"Despesa: {expense_name}\nValor: R$ {expense_value:.2f}")
@@ -57,7 +55,7 @@ class Operations:
 
         return
 
-    def make_formula():
+    def make_formula(parent):
         total_expenses = sum(Operations.expenses.values())
         final_salary = Operations.salary
         total_events = Operations.events
