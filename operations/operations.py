@@ -7,12 +7,10 @@ global events
 global hours
 
 class Operations:
-    def __init__(self, terminal_window):
-        self.terminal_window = terminal_window
-        self.expenses = {}
-        self.salary = 0
-        self.events = 0
-        self.hours = 1
+    expenses = {}
+    salary = 0
+    events = 0
+    hours = 1
 
     @staticmethod
     def add_expenses(parent):
