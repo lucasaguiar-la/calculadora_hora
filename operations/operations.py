@@ -7,10 +7,12 @@ global events
 global hours
 
 class Operations:
-    expenses = {}
-    salary = 0
-    events = 0
-    hours = 1
+    def __init__(self, terminal_window):
+        self.terminal_window = terminal_window
+        self.expenses = {}
+        self.salary = 0
+        self.events = 0
+        self.hours = 1
 
     @staticmethod
     def add_expenses(parent):
@@ -81,11 +83,11 @@ class Operations:
             result = (total_expenses + final_salary + total_events) / final_hours
             print(f"\nO valor da sua hora/trabalho é de R$ {result}")
 
-    def menu(option = 0):
+#🔸 [Menu de opções pelo terminal]
+    '''def menu(option = 0):
         while option != 7:
             print(
-'''
-Escolha uma opção:
+"scolha uma opção:
 1) [DESPESAS] - Registrar despesas mensais
 2) [SALÁRIO] - Definir meta salarial
 3) [IMPREVISTOS] - Definir valor geral para imprevistos
@@ -93,7 +95,7 @@ Escolha uma opção:
 5) Visualizar registros
 6) Quanto vale minha hora?
 7) Sair
-'''
+"
             )
             option = int(input())
             match(option):
@@ -111,4 +113,4 @@ Escolha uma opção:
                     Operations.make_formula()
                 case 7:
                     return
-        return
+        return'''
