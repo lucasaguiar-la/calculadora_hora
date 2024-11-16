@@ -39,11 +39,11 @@ class Operations:
             QMessageBox.information(parent, 'Imprevistos Definidos', f"O valor total da sua reserva para imprevistos é de R$ {event_value:.2f}")
 
     @staticmethod
-    def add_hours():
-        hours_value = int(input("\nQuantas horas mensais você deseja trabalhar? "))
-
-        Operations.hours = hours_value
-        print(f"Horas mensais trabalhadas atualizado para {hours_value}h")
+    def add_hours(parent):
+        hours_value, ok = QInputDialog.getInt(parent, 'Definir Horas de Trabalho', 'Quantas horas mensais você deseja trabalhar?')
+        if ok:
+            Operations.hours = hours_value
+            QMessageBox.information(parent, 'Horas Definidas', f"Horas mensais trabalhadas atualizado para {hours_value}h")
 
     def view_records():
         print("\n[DESPESAS]")

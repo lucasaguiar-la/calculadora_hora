@@ -26,7 +26,7 @@ class TerminalWindow(QMainWindow):
         layout.addWidget(self.events_button)
 
         self.hours_button = QPushButton("Definir Horas de Trabalho", self)
-        self.hours_button.clicked.connect(self.add_hours)
+        self.hours_button.clicked.connect(lambda: Operations.add_hours(self))
         layout.addWidget(self.hours_button)
 
         self.view_button = QPushButton("Visualizar Registros", self)
@@ -42,12 +42,7 @@ class TerminalWindow(QMainWindow):
         self.process.readyReadStandardOutput.connect(self.update_output)
         self.process.start()
 
-    def add_hours(self):
-        # Implementar a lógica para definir horas de trabalho
-        hours_value, ok = QInputDialog.getInt(self, 'Definir Horas de Trabalho', 'Quantas horas mensais você deseja trabalhar?')
-        if ok:
-            Operations.hours = hours_value
-            #self.terminal_view.append(f"Horas mensais trabalhadas atualizadas para {hours_value}h")
+    
 
     def view_records(self):
         # Visualizar registros
