@@ -32,11 +32,11 @@ class Operations:
             QMessageBox.information(parent, 'Meta Salarial Definida', f"Meta salarial atualizada para R$ {salary_value}")
 
     @staticmethod
-    def add_events():
-        event_value = int(input("\nDefina um valor total para reserva de emergência: R$"))
-
-        Operations.events = event_value
-        print(f"O valor total da sua reserva para imprevistos é de R$ {event_value:.2f}")
+    def add_events(parent):
+        event_value, ok = QInputDialog.getDouble(parent, 'Definir Imprevistos', 'Defina um valor total para reserva de emergência:')
+        if ok:
+            Operations.events = event_value
+            QMessageBox.information(parent, 'Imprevistos Definidos', f"O valor total da sua reserva para imprevistos é de R$ {event_value:.2f}")
 
     @staticmethod
     def add_hours():

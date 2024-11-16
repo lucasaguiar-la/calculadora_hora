@@ -22,7 +22,7 @@ class TerminalWindow(QMainWindow):
         layout.addWidget(self.salary_button)
 
         self.events_button = QPushButton("Definir Imprevistos", self)
-        self.events_button.clicked.connect(self.add_events)
+        self.events_button.clicked.connect(lambda: Operations.add_events(self))
         layout.addWidget(self.events_button)
 
         self.hours_button = QPushButton("Definir Horas de Trabalho", self)
@@ -41,13 +41,6 @@ class TerminalWindow(QMainWindow):
         self.process.setProgram("bash" if sys.platform != "win32" else "cmd")
         self.process.readyReadStandardOutput.connect(self.update_output)
         self.process.start()
-
-    def add_events(self):
-        # Implementar a lógica para definir imprevistos
-        event_value, ok = QInputDialog.getDouble(self, 'Definir Imprevistos', 'Defina um valor total para reserva de emergência:')
-        if ok:
-            Operations.events = event_value
-            #self.terminal_view.append(f"O valor total da sua reserva para imprevistos é de R$ {event_value:.2f}")
 
     def add_hours(self):
         # Implementar a lógica para definir horas de trabalho
