@@ -61,8 +61,8 @@ pip install PyQt5
 Clone o repositório do projeto para o seu computador. No terminal, execute:
 
 ```bash
-git clone https://github.com/seu_usuario/seu_repositorio.git
-cd seu_repositorio
+git clone https://github.com/lucasaguiar-la/calculadora_hora
+cd pasta_clonada
 ```
 
 ### 4. Executar a Aplicação
