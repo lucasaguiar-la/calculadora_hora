@@ -1,6 +1,6 @@
 # Calculadora Hora/Valor
 
-Este projeto é uma aplicação de desktop desenvolvida em Python utilizando a biblioteca PyQt5. A aplicação permite que os usuários registrem despesas, definam metas salariais, gerenciem imprevistos e calculem o valor da sua hora de trabalho.
+Este projeto é uma aplicação de desktop desenvolvida para fins de estudo no desenvolvimento de software, utilizando Python e a biblioteca PyQt5. A aplicação permite que os usuários registrem despesas, definam metas salariais, gerenciem imprevistos e calculem o valor da sua hora de trabalho.
 
 ## Funcionalidades
 
