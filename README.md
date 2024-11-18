@@ -62,7 +62,7 @@ Clone o repositório do projeto para o seu computador. No terminal, execute:
 
 ```bash
 git clone https://github.com/lucasaguiar-la/calculadora_hora
-cd pasta_clonada
+cd calculadora_hora
 ```
 
 ### 4. Executar a Aplicação
